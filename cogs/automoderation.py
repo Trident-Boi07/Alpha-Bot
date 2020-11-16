@@ -12,11 +12,13 @@ class AutoMod(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        filtered_words = ["fuck", "shit", "ass", "asshole", "bullshit"]
-        slang = ["nude"]
+        filtered_words = ["a-bit-of-swear-words-here"]
+        slang = ["a-bit-of-racial-slurs-here"]
 
-        for word in filtered_words:
+        for word in filtered_words: # If the message contains swear words then they will be warned
             if word in msg.content.lower():
+                
+                # Setting up the database
                 with open('./data/warnings.json','r') as f:
                     warns = json.load(f)
                 if str(msg.guild.id) not in warns:
@@ -34,7 +36,7 @@ class AutoMod(commands.Cog):
                     await msg.author.send("You have been auto-warned by me in the **Trident Galaxy** for **SWEARING**")   
                     await msg.channel.send("Watch your language, {} You have been warned this time".format(msg.author.mention))
 
-        for nword in slang:
+        for nword in slang: # If the message contains racial slurs then they will be banned
             if nword in msg.content.lower():
                 await msg.delete()
                 await msg.channel.send('**{}** has been automatically banned for using the "n" word.'.format(msg.author))

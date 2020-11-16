@@ -316,7 +316,8 @@ class Moderation(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     @cooldown(1, 3, BucketType.user)
     async def warn(self, ctx, member: discord.Member, *, reason=None):
-
+        
+        # Making the database
         with open('./data/warnings.json','r') as f:
             warns = json.load(f)
         if str(ctx.guild.id) not in warns:

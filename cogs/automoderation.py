@@ -18,7 +18,7 @@ class AutoMod(commands.Cog):
         for word in filtered_words: # If the message contains swear words then they will be warned
             if word in msg.content.lower():
                 
-                # Setting up the database
+                # Making the database
                 with open('./data/warnings.json','r') as f:
                     warns = json.load(f)
                 if str(msg.guild.id) not in warns:
